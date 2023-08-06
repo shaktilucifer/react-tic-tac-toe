@@ -32,18 +32,19 @@ function useBoardConfig() {
 
 interface BoardRowProps {
   rowValues?: string[];
+  rowNum: number;
 }
 
 function Board() {
   const { boardState, updateBoardState } = useBoardConfig();
 
-  function BoardRow({ rowValues }: BoardRowProps) {
+  function BoardRow({ rowValues, rowNum }: BoardRowProps) {
     return (
       <>
         <div className="boardRow">
-          {rowValues?.map((value: string) => (
+          {rowValues?.map((value: string, idx: number) => (
             <div
-              onClick={() => updateBoardState(0, 0, "S")}
+              onClick={() => updateBoardState(rowNum, idx, "S")}
               className="boardCell"
             >
               {value}
@@ -56,9 +57,9 @@ function Board() {
   console.log({ boardState });
   return (
     <div className="board">
-      <BoardRow rowValues={boardState?.[0]} />
-      <BoardRow rowValues={boardState?.[1]} />
-      <BoardRow rowValues={boardState?.[2]} />
+      <BoardRow rowValues={boardState?.[0]} rowNum={0} />
+      <BoardRow rowValues={boardState?.[1]} rowNum={1} />
+      <BoardRow rowValues={boardState?.[2]} rowNum={2} />
     </div>
   );
 }

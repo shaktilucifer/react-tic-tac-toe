@@ -1,0 +1,22 @@
+.board {
+    width: 600px;
+    margin-top: 20%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.boardRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.boardCell {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid grey;
+    border-radius: 8px;
+    gap: 10px;
+}

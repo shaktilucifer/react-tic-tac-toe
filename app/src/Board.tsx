@@ -14,19 +14,20 @@ function useBoardConfig() {
 
   const updateBoardState = useCallback(
     (row: number, col: number, mark: string) => {
-        // do not update board if mark is already set
-        if(!!boardState[row][col]) {
-            return;
-        }
-  
-        setBoardState((boardState) => {
+      // do not update board if mark is already set
+      if (!!boardState[row][col]) {
+        console.log(boardState);
+        return;
+      }
+
+      setBoardState((boardState) => {
         const currentBoardState = [...boardState];
         currentBoardState[row][col] = mark;
         return currentBoardState;
       });
       toggleMark();
     },
-    [setBoardState]
+    [setBoardState, boardState]
   );
 
   const resetBoardState = () => {
@@ -58,12 +59,8 @@ interface BoardRowProps {
 }
 
 function Board() {
-  const {
-    boardState,
-    updateBoardState,
-    resetBoardState,
-    currentMark,
-  } = useBoardConfig();
+  const { boardState, updateBoardState, resetBoardState, currentMark } =
+    useBoardConfig();
 
   const handleClick = (row: number, col: number) => {
     updateBoardState(row, col, currentMark);
